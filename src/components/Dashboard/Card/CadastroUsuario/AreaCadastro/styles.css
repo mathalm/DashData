@@ -1,0 +1,14 @@
+.container-area-cadastro{
+  width: 70vw;
+  height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0px 200px;
+}
+.div-botao-cadastrar-usuario{
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 50px;
+}

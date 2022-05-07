@@ -1,0 +1,11 @@
+.TableHead{
+background-color: aqua;  
+}
+.table-container{
+  width: 70vw;
+  height: 65vh;
+  margin: auto;
+}
+.table-container::-webkit-scrollbar{
+  width: 1px;
+}
