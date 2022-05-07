@@ -1,3 +1,15 @@
-.div-cadastro-usuario{
-  margin: 0 0 25px 0;
+.div-cadastro-usuario {
+  position: fixed;
+  z-index: 10;
+  bottom: 20px;
+  right: 20px;
+}
+.rounded-circle {
+  width: 40px;
+  height: 60px;
+}
+.botao-sair-cadastro {
+  background-color: aliceblue;
+  padding-bottom: 12px !important;
+  font-size: 1.2rem !important;
 }

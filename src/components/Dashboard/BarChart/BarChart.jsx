@@ -1,5 +1,5 @@
 import React from "react";
-import { Doughnut } from "react-chartjs-2";
+import { Bar } from "react-chartjs-2";
 import { Chart, registerables } from "chart.js";
 import "./styles.css";
 
@@ -28,9 +28,11 @@ const BarChart = ({ listagemUsuarios }) => {
     }
   });
   const dadosBar = [contagemCidadePoA.length, contagemCidadeFloripa.length, contagemCidadeRio.length];
+
   return (
     <div className="div-grafico1">
-      <Doughnut
+      <Bar
+      onClick={() =>{console.log('teste')}}
         data={{
           labels: ["Porto Alegre", "Florianópolis", "Rio de Janeiro"],
           datasets: [
@@ -49,19 +51,23 @@ const BarChart = ({ listagemUsuarios }) => {
               ],
               borderWidth: 1,
             },
-            {
-              label: "Meta",
-              data: [8, 5, 6],
-              backgroundColor: "Orange",
-              borderColor: "red",
-            },
+            // {
+            //   label: "Meta",
+            //   data: [8, 5, 6],
+            //   backgroundColor: "Orange",
+            //   borderColor: "red",
+            // },
           ],
         }}
         options={{
+          indexAxis: 'y',
           maintainAspectRatio: false,
           scales: {
             y: {
               beginAtZero: true,
+              grid: {
+                offset: true
+              }
             },
           },
         }}

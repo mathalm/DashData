@@ -7,8 +7,9 @@ import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import Slide from '@mui/material/Slide';
-import './styles.css'
 import AreaCadastro from './AreaCadastro';
+import { BiPlus } from 'react-icons/bi'
+import './styles.css'
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -28,8 +29,8 @@ export default function CadastroUsuarios({setReload, reload}) {
 
   return (
     <div className='div-cadastro-usuario'>
-      <Button variant="contained" onClick={handleClickOpen}>
-        Cadastrar usuário
+      <Button variant="contained" onClick={handleClickOpen} className='rounded-circle' >
+        <BiPlus size={23}/>
       </Button>
       <Dialog
         fullScreen
@@ -44,10 +45,11 @@ export default function CadastroUsuarios({setReload, reload}) {
               color="inherit"
               onClick={handleClose}
               aria-label="close"
+              className='botao-sair-cadastro'
             >
               Sair
             </IconButton>
-            <Typography sx={{ ml: 2, flex: 1 }} variant="h6" component="div">
+            <Typography sx={{ ml: 3, flex: 1 }} fontSize='18' component="div" className='typografy-novo-usuario'>
               Novo usuário
             </Typography>
           </Toolbar>

@@ -2,10 +2,10 @@
 background-color: aqua;  
 }
 .table-container{
-  width: 70vw;
+  max-width: 80vw;
   height: 65vh;
   margin: auto;
 }
 .table-container::-webkit-scrollbar{
-  width: 1px;
+  width: 0.1px;
 }
