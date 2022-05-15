@@ -1,0 +1,15 @@
+.footer-page{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  bottom: 3vh;
+  width: 100%;
+  color: rgb(112, 112, 112);
+}
+.footer-page a {
+  text-decoration: none;
+}
+.footer-page a:visited{
+  color: blue;
+}

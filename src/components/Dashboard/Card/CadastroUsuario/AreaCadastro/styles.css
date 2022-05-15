@@ -1,14 +1,22 @@
 .container-area-cadastro{
-  width: 70vw;
-  height: 80vh;
+  height: 400px;
+  /* width: 800px; */
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 0px 200px;
 }
 .div-botao-cadastrar-usuario{
-  width: 100%;
+  position: absolute;
+  bottom: 8px;
+  right: 25px;
   display: flex;
   justify-content: flex-end;
-  padding-right: 50px;
+}
+.sumir{
+  display: none;
+}
+.alerta{
+  position: absolute;
+  top: 20px;
+  right: 20px;
 }

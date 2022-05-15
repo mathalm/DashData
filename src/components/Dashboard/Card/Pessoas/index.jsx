@@ -31,20 +31,38 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 }));
 
 
-export default function TabelaPessoas({ listagemUsuarios, setListagemUsuarios }) {
+export default function TabelaPessoas({ listagemUsuarios, setListagemUsuarios, valorFiltro }) {
 
   useEffect(() => {
-    setListagemUsuarios(users);
-  }, [setListagemUsuarios])
+    if (valorFiltro.current <= 0) {
+      setListagemUsuarios(users);
+    }
+  }, [setListagemUsuarios, valorFiltro])
+
+
+  const handleMostrarOpcoes = (indice) => {
+    listagemUsuarios.splice(indice, 1);
+    setListagemUsuarios(
+      listagemUsuarios.filter(function filterByID(obj) {
+        if ("id" in obj && obj.id !== indice) {
+          return true;
+        } else {
+          return false;
+        }
+      })
+    )
+
+
+  }
 
   return (
     <div>
-      {/* <button onClick={handleFiltrar}>aqui</button> */}
       <TableContainer component={Paper} className='table-container' >
         <Table sx={{ minWidth: 200 }} aria-label="customized table " stickyHeader size='medium'>
           <TableHead>
             <TableRow>
-              <StyledTableCell>Nome</StyledTableCell>
+              <StyledTableCell className='classe-id-tabela'>ID</StyledTableCell>
+              <StyledTableCell align="right">Nome</StyledTableCell>
               <StyledTableCell align="right">Username</StyledTableCell>
               <StyledTableCell align="right">E-mail</StyledTableCell>
               <StyledTableCell align="right">Telefone</StyledTableCell>
@@ -54,13 +72,14 @@ export default function TabelaPessoas({ listagemUsuarios, setListagemUsuarios })
           <TableBody>
             {listagemUsuarios.map((user, index) => {
               return (
-                <StyledTableRow key={index}>
-                  <StyledTableCell >{user.name}</StyledTableCell>
-                  <StyledTableCell align="right">{user.username}</StyledTableCell>
-                  <StyledTableCell align="right">{user.email}</StyledTableCell>
-                  <StyledTableCell align="right">{user.phone}</StyledTableCell>
-                  <StyledTableCell align="right">{user.address.city}</StyledTableCell>
-                </StyledTableRow>
+                  <StyledTableRow key={index} onClick={() =>handleMostrarOpcoes(index)}>
+                    <StyledTableCell indexlinha={index} className='classe-id-tabela' >{user.id}</StyledTableCell>
+                    <StyledTableCell align="right">{user.name}</StyledTableCell>
+                    <StyledTableCell align="right">{user.username}</StyledTableCell>
+                    <StyledTableCell align="right">{user.email}</StyledTableCell>
+                    <StyledTableCell align="right">{user.phone}</StyledTableCell>
+                    <StyledTableCell align="right">{user.address.city}</StyledTableCell>
+                  </StyledTableRow>
               )
             })}
           </TableBody>

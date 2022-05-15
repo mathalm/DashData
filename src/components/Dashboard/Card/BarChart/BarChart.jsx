@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Bar } from "react-chartjs-2";
 import { Chart, registerables } from "chart.js";
 import "./styles.css";
@@ -6,33 +6,33 @@ import "./styles.css";
 Chart.register(...registerables);
 
 const BarChart = ({ listagemUsuarios }) => {
-  var contagemCidadePoA = listagemUsuarios.filter(function filterByID(obj) {
-    if ("address" in obj && obj.address.city.includes("Porto Alegre")) {
-      return true;
-    } else {
-      return false;
+
+  const [contagemCidadePoA, setContagemCidadePoA] = useState([]);
+  const [contagemCidadeFloripa, setContagemCidadeFloripa] = useState([]);
+  const [contagemCidadeRio, setContagemCidadeRio] = useState([]);
+
+  useEffect(() => {
+    const filtrarLista = (nomeDaCidade) => {
+      return (
+        listagemUsuarios.filter(function filterByID(obj) {
+          if ("address" in obj && obj.address.city.includes(nomeDaCidade)) {
+            return true;
+          } else {
+            return false;
+          }
+        })
+      )
     }
-  });
-  var contagemCidadeFloripa = listagemUsuarios.filter(function filterByID(obj) {
-    if ("address" in obj && obj.address.city.includes("Florianópolis")) {
-      return true;
-    } else {
-      return false;
-    }
-  });
-  var contagemCidadeRio = listagemUsuarios.filter(function filterByID(obj) {
-    if ("address" in obj && obj.address.city.includes("Rio de Janeiro")) {
-      return true;
-    } else {
-      return false;
-    }
-  });
+    setContagemCidadePoA(filtrarLista("Porto Alegre"))
+    setContagemCidadeRio(filtrarLista("Rio de Janeiro"))
+    setContagemCidadeFloripa(filtrarLista("Florianópolis"))
+  }, [listagemUsuarios])
+
   const dadosBar = [contagemCidadePoA.length, contagemCidadeFloripa.length, contagemCidadeRio.length];
 
   return (
     <div className="div-grafico1">
       <Bar
-      onClick={() =>{console.log('teste')}}
         data={{
           labels: ["Porto Alegre", "Florianópolis", "Rio de Janeiro"],
           datasets: [
@@ -51,12 +51,12 @@ const BarChart = ({ listagemUsuarios }) => {
               ],
               borderWidth: 1,
             },
-            // {
-            //   label: "Meta",
-            //   data: [8, 5, 6],
-            //   backgroundColor: "Orange",
-            //   borderColor: "red",
-            // },
+            {
+              label: "Meta",
+              data: [6, 4, 5],
+              backgroundColor: "Orange",
+              borderColor: "red",
+            },
           ],
         }}
         options={{

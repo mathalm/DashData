@@ -1,21 +1,19 @@
 import * as React from 'react';
-import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
-import List from '@mui/material/List';
-import AppBar from '@mui/material/AppBar';
-import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
 import Slide from '@mui/material/Slide';
 import AreaCadastro from './AreaCadastro';
-import { BiPlus } from 'react-icons/bi'
+import { AiOutlineUserAdd } from 'react-icons/ai'
+import { GrClose } from 'react-icons/gr'
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogTitle from '@mui/material/DialogTitle';
 import './styles.css'
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-export default function CadastroUsuarios({setReload, reload}) {
+export default function CadastroUsuarios({ setReload, reload, aparecerOpcoes }) {
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -29,34 +27,22 @@ export default function CadastroUsuarios({setReload, reload}) {
 
   return (
     <div className='div-cadastro-usuario'>
-      <Button variant="contained" onClick={handleClickOpen} className='rounded-circle' >
-        <BiPlus size={23}/>
-      </Button>
+      <div onClick={handleClickOpen} className={aparecerOpcoes ? 'div-botao-subir-adicionar' : 'div-botao-descer-adicionar'}>
+        <AiOutlineUserAdd size={22} />
+      </div>
       <Dialog
-        fullScreen
         open={open}
         onClose={handleClose}
         TransitionComponent={Transition}
+        
       >
-        <AppBar sx={{ position: 'relative' }}>
-          <Toolbar>
-            <IconButton
-              edge="start"
-              color="inherit"
-              onClick={handleClose}
-              aria-label="close"
-              className='botao-sair-cadastro'
-            >
-              Sair
-            </IconButton>
-            <Typography sx={{ ml: 3, flex: 1 }} fontSize='18' component="div" className='typografy-novo-usuario'>
-              Novo usuário
-            </Typography>
-          </Toolbar>
-        </AppBar>
-        <List>
-         <AreaCadastro setOpen={setOpen} setReload={setReload} reload={reload}/>         
-        </List>
+        <DialogTitle>Criar usuário</DialogTitle>
+        <DialogContent className='modal-lg'>
+          <AreaCadastro setOpen={setOpen} setReload={setReload} reload={reload} />
+        </DialogContent>
+        <DialogActions>
+          <GrClose onClick={handleClose} className='botao-cancelar ' />
+        </DialogActions>
       </Dialog>
     </div>
   );

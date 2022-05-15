@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import TextField from '@mui/material/TextField';
 import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
-import user from '../../../../../arrayUsers.json'
+import user from '../../../../../arrayUsers.json';
 import './styles.css'
 function AreaCadastro({ setOpen, setReload, reload }) {
   const [nome, setNome] = useState('');
@@ -13,11 +13,13 @@ function AreaCadastro({ setOpen, setReload, reload }) {
   const [cidade, setCidade] = useState('');
   const [rua, setRua] = useState('');
   const [numero, setNumero] = useState('');
+  const [inputVazio, setInputVazio] = useState(true);
+
   const handleEnvioCadastroUsuario = () => {
     if (nome.length > 3 && userName.length > 3 && email.length > 3 && telefone.length > 3) {
 
       var usuario = {
-        "id": Math.random(),
+        "id": Math.floor(Math.random() *243),
         "name": nome,
         "username": userName,
         "email": email,
@@ -43,51 +45,62 @@ function AreaCadastro({ setOpen, setReload, reload }) {
       setOpen(false);
       handleReload();
     } else {
-      document.alert("Você deve preencher os dados obrigatórios com dados válidos!")
+      setInputVazio(false)
+      setTimeout(() => {
+        setInputVazio(true)
+
+      }, 4000);
+
     }
   }
-  const handleReload = () =>{
+  const handleReload = () => {
     setReload(!reload);
-}
+  }
+
   return (
     <div>
       <Grid container spacing={2} className='container-area-cadastro'>
         <Grid item xs={6}>
           <TextField
             id="standard-error-helper-text"
-            label="Nome*"
+            label="Nome"
             variant="standard"
             onChange={(e) => { setNome(e.target.value) }}
+            required
             fullWidth
           />
         </Grid>
         <Grid item xs={6}>
           <TextField
-            id="standard-error-helper-text"
-            label="UserName*"
+            id="standard-error-helper-text-username"
+            label="UserName"
             variant="standard"
             onChange={(e) => { setUserName(e.target.value) }}
+            autocomplete="false"
             fullWidth
+            required
           />
         </Grid>
-        <Grid item xs={5}>
+        <Grid item xs={6}>
           <TextField
             id="standard-error-helper-text"
-            label="E-mail*"
+            label="E-mail"
             type="email"
             variant="standard"
             onChange={(e) => { setEmail(e.target.value) }}
             fullWidth
+            required
           />
         </Grid>
-        <Grid item xs={5}>
+        <Grid item xs={6}>
           <TextField
-            id="standard-error-helper-text"
-            label="Telefone*"
+            id="standard-error-helper-text-celular"
+            label="Celular"
             type="number"
             variant="standard"
             onChange={(e) => { setTelefone(e.target.value) }}
             fullWidth
+            required
           />
         </Grid>
         <Grid item xs={3}>
@@ -109,7 +122,7 @@ function AreaCadastro({ setOpen, setReload, reload }) {
             fullWidth
           />
         </Grid>
-        <Grid item xs={3}>
+        <Grid item xs={4}>
           <TextField
             id="standard-error-helper-text"
             label="Rua"
@@ -130,9 +143,11 @@ function AreaCadastro({ setOpen, setReload, reload }) {
         </Grid>
       </Grid>
       <div className='div-botao-cadastrar-usuario'>
-        <Button autoFocus onClick={handleEnvioCadastroUsuario} variant="contained">
-          save
+        <Button onClick={handleEnvioCadastroUsuario}>Enviar
         </Button>
+      </div>
+      <div className={!inputVazio ? "alert alert-warning alerta" : 'sumir'} role="alert">
+        Todos os campos devem ser preenchidos!
       </div>
     </div>
   );

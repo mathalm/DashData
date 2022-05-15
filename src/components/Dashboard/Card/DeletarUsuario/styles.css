@@ -1,18 +1,7 @@
-/* .dialog-cadastro-usuario{
-  height: 500px;
-} */
-.rounded-circle {
-  width: 30px;
-  height: 60px;
-}
-.botao-cancelar{
+.div-botao-subir-deletar{
   position: absolute;
-  top: 10px;
-  cursor: pointer;
-}
-.div-botao-subir-adicionar{
-  position: absolute;
-  bottom: 90px;
+  z-index: 10;
+  bottom: 210px;
   right: 26px;
   height: 50px;
   width: 50px;
@@ -22,19 +11,18 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  animation: SubirOpcao 1s;
+  animation: SubirDeletar 1s;
   cursor: pointer;
-  box-shadow: 80px 0px 60px 140px #9a99f567;
 }
-@keyframes SubirOpcao{
+@keyframes SubirDeletar{
   from{
     bottom: 23px;
   }
   to{
-    bottom: 90px;
+    bottom: 210px;
   }
 }
-.div-botao-descer-adicionar{
+.div-botao-descer-deletar{
   position: absolute;
   bottom: 23px;
   right: 26px;
@@ -46,11 +34,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  animation: DescerOpcao 1s;
+  animation: DescerDeletar 1s;
 }
-@keyframes DescerOpcao{
+@keyframes DescerDeletar{
   from{
-    bottom: 90px;
+    bottom: 210px;
   }
   to{
     bottom: 23px;

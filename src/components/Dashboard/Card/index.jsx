@@ -3,18 +3,23 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
 import { TabContext, TabPanel } from '@mui/lab';
-import BarChart from '../BarChart/BarChart';
 import TabelaPessoas from './Pessoas';
 import CadastroUsuarios from './CadastroUsuario';
 import './styles.css'
+import Graficos from './Gráficos';
+import BotaoOpcoes from './BotaoOpcoes';
+import EditarUsuario from './EditarUsuario';
+import DeletarUsuario from './DeletarUsuario';
 
-export default function Card({  listagemUsuarios, setListagemUsuarios }) {
+export default function Card({  listagemUsuarios, setListagemUsuarios, valorFiltro }) {
   const [value, setValue] = React.useState('one');
   const [reload, setReload] = React.useState(false);
+  const [aparecerOpcoes, setAparecerOpcoes] = React.useState(false);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
+  
 
   return (
     <div>
@@ -35,12 +40,17 @@ export default function Card({  listagemUsuarios, setListagemUsuarios }) {
           </Box>
         </div>
         <TabPanel value="one" index={0} className='tab-panel'>
-          <CadastroUsuarios setReload={setReload} reload={reload} />
+          <DeletarUsuario aparecerOpcoes={aparecerOpcoes}/>
+          <EditarUsuario aparecerOpcoes={aparecerOpcoes} />
+          <BotaoOpcoes setAparecerOpcoes={setAparecerOpcoes} aparecerOpcoes={aparecerOpcoes}/>
+          <CadastroUsuarios setReload={setReload} reload={reload} aparecerOpcoes={aparecerOpcoes} />
           <TabelaPessoas listagemUsuarios={listagemUsuarios}
-            setListagemUsuarios={setListagemUsuarios} />
+            setListagemUsuarios={setListagemUsuarios} 
+            valorFiltro={valorFiltro}
+            />
         </TabPanel>
         <TabPanel value="two" index={1}>
-          <BarChart  listagemUsuarios={listagemUsuarios}/>
+          <Graficos listagemUsuarios={listagemUsuarios}/>
         </TabPanel>
       </TabContext>
     </div>

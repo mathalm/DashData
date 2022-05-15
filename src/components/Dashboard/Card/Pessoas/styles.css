@@ -9,3 +9,13 @@ background-color: aqua;
 .table-container::-webkit-scrollbar{
   width: 0.1px;
 }
+.opcoes-editar-deletar{
+  position: relative;
+}
+.esconder-opcoes{
+  display: none;
+}
+.classe-id-tabela{
+  width: 20px;
+  
+}

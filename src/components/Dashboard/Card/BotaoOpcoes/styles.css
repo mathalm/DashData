@@ -1,0 +1,15 @@
+.div-botao-mostrar-opcoes{
+  position: absolute;
+  z-index: 100; 
+  bottom: 20px;
+  right: 20px;
+  height: 60px;
+  width: 60px;
+  background-color: #1976D2;
+  color: #f0f0f0;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
