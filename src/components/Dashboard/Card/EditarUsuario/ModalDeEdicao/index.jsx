@@ -1,31 +1,31 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import TextField from '@mui/material/TextField';
 import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
-import user from '../../../../../arrayUsers.json';
 import './styles.css'
-function AreaCadastro({ setOpen, setReload, reload }) {
+function ModalDeEdicao({ usuarioSendoEditado, setOpenModalEdicao, listagemUsuarios,indiceDeEdicao, setPossivelEditar }) {
   const [nome, setNome] = useState('');
   const [userName, setUserName] = useState('');
   const [email, setEmail] = useState('');
-  const [telefone, setTelefone] = useState('');
+  const [celular, setCelular] = useState('');
   const [cep, setCep] = useState('');
   const [cidade, setCidade] = useState('');
   const [rua, setRua] = useState('');
-  const [numero, setNumero] = useState('');
+  const [complemento, setComplemento] = useState('');
   const [inputVazio, setInputVazio] = useState(true);
 
-  const handleEnvioCadastroUsuario = () => {
-    if (nome.length > 3 && userName.length > 3 && email.length > 3 && telefone.length > 3) {
+  const handleEnvioCadastroUsuario = (e) => {
+    e.preventDefault()
+    if (nome.length > 3 && userName.length > 3 && email.length > 3 && celular.length > 3) {
 
       var usuario = {
-        "id": Math.floor(Math.random() *243),
+        "id": usuarioSendoEditado.id,
         "name": nome,
         "username": userName,
         "email": email,
         "address": {
           "street": rua,
-          "suite": numero,
+          "suite": complemento,
           "city": cidade,
           "zipcode": cep,
           "geo": {
@@ -33,7 +33,7 @@ function AreaCadastro({ setOpen, setReload, reload }) {
             "lng": "57.2232"
           }
         },
-        "phone": telefone,
+        "phone": celular,
         "website": "noHave.com",
         "company": {
           "name": "Hoeger LLC",
@@ -41,32 +41,38 @@ function AreaCadastro({ setOpen, setReload, reload }) {
           "bs": "target end-to-end models"
         }
       }
-      user.unshift(usuario);
-      setOpen(false);
-      handleReload();
+      listagemUsuarios[indiceDeEdicao] = usuario;
+      setOpenModalEdicao(false);
     } else {
       setInputVazio(false)
       setTimeout(() => {
-        setInputVazio(true)
+        setInputVazio(true);
 
       }, 4000);
 
     }
   }
-  const handleReload = () => {
-    setReload(!reload);
-  }
+  useEffect(() =>{
+    setNome(document.getElementById('standard-error-helper-text-nome').value);
+    setUserName(document.getElementById('standard-error-helper-text-username').value);
+    setEmail(document.getElementById('standard-error-helper-text-email').value);
+    setCelular(document.getElementById('standard-error-helper-text-celular').value);
+    setCep(document.getElementById('standard-error-helper-text-cep').value);
+    setCidade(document.getElementById('standard-error-helper-text-cidade').value);
+    setRua(document.getElementById('standard-error-helper-text-rua').value);
+    setComplemento(document.getElementById('standard-error-helper-text-complemento').value);
+  },[usuarioSendoEditado]);
 
   return (
     <div>
       <Grid container spacing={2} className='container-area-cadastro'>
         <Grid item xs={6}>
           <TextField
-            id="standard-error-helper-text"
+            id="standard-error-helper-text-nome"
             label="Nome"
             variant="standard"
-            onChange={(e) => { setNome(e.target.value) }}
-            required
+            defaultValue={usuarioSendoEditado.name}
+            onChange={(e) => { setNome(e.target.value)}}
             fullWidth
           />
         </Grid>
@@ -76,17 +82,19 @@ function AreaCadastro({ setOpen, setReload, reload }) {
             label="UserName"
             variant="standard"
             onChange={(e) => { setUserName(e.target.value) }}
+            defaultValue={usuarioSendoEditado.username}
             fullWidth
             required
           />
         </Grid>
         <Grid item xs={6}>
           <TextField
-            id="standard-error-helper-text"
+            id="standard-error-helper-text-email"
             label="E-mail"
             type="email"
             variant="standard"
             onChange={(e) => { setEmail(e.target.value) }}
+            defaultValue={usuarioSendoEditado.email}
             fullWidth
             required
           />
@@ -97,52 +105,57 @@ function AreaCadastro({ setOpen, setReload, reload }) {
             label="Celular"
             type="number"
             variant="standard"
-            onChange={(e) => { setTelefone(e.target.value) }}
+            onChange={(e) => { setCelular(e.target.value) }}
+            defaultValue={usuarioSendoEditado.phone}
             fullWidth
             required
           />
         </Grid>
-        <Grid item xs={3}>
+        <Grid item xs={2}>
           <TextField
-            id="standard-error-helper-text"
+            id="standard-error-helper-text-cep"
             label="CEP"
             type="number"
             variant="standard"
             onChange={(e) => { setCep(e.target.value) }}
+            defaultValue={usuarioSendoEditado.address.zipcode}
             fullWidth
           />
         </Grid>
         <Grid item xs={3}>
           <TextField
-            id="standard-error-helper-text"
+            id="standard-error-helper-text-cidade"
             label="Cidade"
             variant="standard"
             onChange={(e) => { setCidade(e.target.value) }}
+            defaultValue={usuarioSendoEditado.address.city}
             fullWidth
           />
         </Grid>
         <Grid item xs={4}>
           <TextField
-            id="standard-error-helper-text"
+            id="standard-error-helper-text-rua"
             label="Rua"
             variant="standard"
             onChange={(e) => { setRua(e.target.value) }}
+            defaultValue={usuarioSendoEditado.address.street}
             fullWidth
           />
         </Grid>
-        <Grid item xs={2}>
+        <Grid item xs={3}>
           <TextField
-            id="standard-error-helper-text"
-            label="Número"
-            type="number"
+            id="standard-error-helper-text-complemento"
+            label="Complemento"
+            type="text"
             variant="standard"
-            onChange={(e) => { setNumero(e.target.value) }}
+            onChange={(e) => { setComplemento(e.target.value) }}
+            defaultValue={usuarioSendoEditado.address.suite}
             fullWidth
           />
         </Grid>
       </Grid>
       <div className='div-botao-cadastrar-usuario'>
-        <Button onClick={handleEnvioCadastroUsuario}>Enviar
+        <Button onClick={handleEnvioCadastroUsuario}>Editar
         </Button>
       </div>
       <div className={!inputVazio ? "alert alert-warning alerta" : 'sumir'} role="alert">
@@ -152,4 +165,4 @@ function AreaCadastro({ setOpen, setReload, reload }) {
   );
 }
 
-export default AreaCadastro;
+export default ModalDeEdicao;

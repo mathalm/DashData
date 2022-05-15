@@ -1,0 +1,22 @@
+.container-area-cadastro{
+  height: 400px;
+  /* width: 800px; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.div-botao-cadastrar-usuario{
+  position: absolute;
+  bottom: 8px;
+  right: 25px;
+  display: flex;
+  justify-content: flex-end;
+}
+.sumir{
+  display: none;
+}
+.alerta{
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}

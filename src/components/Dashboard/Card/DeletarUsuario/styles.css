@@ -1,4 +1,4 @@
-.div-botao-subir-deletar{
+.div-botao-subir-deletar {
   position: absolute;
   z-index: 10;
   bottom: 210px;
@@ -14,15 +14,15 @@
   animation: SubirDeletar 1s;
   cursor: pointer;
 }
-@keyframes SubirDeletar{
-  from{
+@keyframes SubirDeletar {
+  from {
     bottom: 23px;
   }
-  to{
+  to {
     bottom: 210px;
   }
 }
-.div-botao-descer-deletar{
+.div-botao-descer-deletar {
   position: absolute;
   bottom: 23px;
   right: 26px;
@@ -36,11 +36,28 @@
   justify-content: center;
   animation: DescerDeletar 1s;
 }
-@keyframes DescerDeletar{
-  from{
+@keyframes DescerDeletar {
+  from {
     bottom: 210px;
   }
-  to{
+  to {
     bottom: 23px;
   }
+}
+
+.div-botao-subir-deletar-possivel-excluir{
+  position: absolute;
+  z-index: 10;
+  bottom: 210px;
+  right: 26px;
+  height: 50px;
+  width: 50px;
+  background-color: #ff2f40;
+  color: #f0f0f0;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: SubirDeletar 1s;
+  cursor: pointer;
 }

@@ -34,7 +34,6 @@ export default function CadastroUsuarios({ setReload, reload, aparecerOpcoes }) 
         open={open}
         onClose={handleClose}
         TransitionComponent={Transition}
-        
       >
         <DialogTitle>Criar usuário</DialogTitle>
         <DialogContent className='modal-lg'>

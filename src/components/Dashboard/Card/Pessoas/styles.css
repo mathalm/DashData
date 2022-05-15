@@ -19,3 +19,13 @@ background-color: aqua;
   width: 20px;
   
 }
+.possivel-excluir-essa-linha:hover{
+  transform: scale(1.01);
+  background-color: rgba(255, 0, 0, 0.178) !important;
+  cursor: pointer;
+}
+.possivel-editar-essa-linha:hover{
+  transform: scale(1.01);
+  background-color: rgba(21, 255, 0, 0.432) !important;
+  cursor: pointer;
+}

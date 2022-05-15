@@ -31,7 +31,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 }));
 
 
-export default function TabelaPessoas({ listagemUsuarios, setListagemUsuarios, valorFiltro }) {
+export default function TabelaPessoas({ listagemUsuarios, setListagemUsuarios, valorFiltro, possivelExcluir, possivelEditar,setUsuarioSendoEditado, setOpenModalEdicao, setIndiceDeEdicao, setPossivelEditar }) {
 
   useEffect(() => {
     if (valorFiltro.current <= 0) {
@@ -40,20 +40,38 @@ export default function TabelaPessoas({ listagemUsuarios, setListagemUsuarios, v
   }, [setListagemUsuarios, valorFiltro])
 
 
-  const handleMostrarOpcoes = (indice) => {
-    listagemUsuarios.splice(indice, 1);
-    setListagemUsuarios(
-      listagemUsuarios.filter(function filterByID(obj) {
-        if ("id" in obj && obj.id !== indice) {
-          return true;
-        } else {
-          return false;
-        }
-      })
-    )
-
-
+  const handleMostraOpcaoDeExcluir = (indice) => {
+    if (possivelExcluir) {
+      listagemUsuarios.splice(indice, 1);
+      setListagemUsuarios(
+        listagemUsuarios.filter(function filterByID(obj) {
+          if ("id" in obj && obj.id !== indice) {
+            return true;
+          } else {
+            return false;
+          }
+        })
+      )
+    }
+    if (possivelEditar) {
+      var usuarioEdicao = listagemUsuarios[indice];
+      setUsuarioSendoEditado(usuarioEdicao);
+      setOpenModalEdicao(true);
+      setIndiceDeEdicao(indice)
+      setPossivelEditar(true);
+    }
   }
+
+  const handleMudarClasseDaLinha = () => {
+    if (possivelExcluir) {
+      return 'possivel-excluir-essa-linha'
+    }
+    if (possivelEditar) {
+      return 'possivel-editar-essa-linha'
+    }
+  }
+
+
 
   return (
     <div>
@@ -72,14 +90,14 @@ export default function TabelaPessoas({ listagemUsuarios, setListagemUsuarios, v
           <TableBody>
             {listagemUsuarios.map((user, index) => {
               return (
-                  <StyledTableRow key={index} onClick={() =>handleMostrarOpcoes(index)}>
-                    <StyledTableCell indexlinha={index} className='classe-id-tabela' >{user.id}</StyledTableCell>
-                    <StyledTableCell align="right">{user.name}</StyledTableCell>
-                    <StyledTableCell align="right">{user.username}</StyledTableCell>
-                    <StyledTableCell align="right">{user.email}</StyledTableCell>
-                    <StyledTableCell align="right">{user.phone}</StyledTableCell>
-                    <StyledTableCell align="right">{user.address.city}</StyledTableCell>
-                  </StyledTableRow>
+                <StyledTableRow key={index} onClick={() => handleMostraOpcaoDeExcluir(index)} className={handleMudarClasseDaLinha()}>
+                  <StyledTableCell indexlinha={index} className='classe-id-tabela' >{user.id}</StyledTableCell>
+                  <StyledTableCell align="right">{user.name}</StyledTableCell>
+                  <StyledTableCell align="right">{user.username}</StyledTableCell>
+                  <StyledTableCell align="right">{user.email}</StyledTableCell>
+                  <StyledTableCell align="right">{user.phone}</StyledTableCell>
+                  <StyledTableCell align="right">{user.address.city}</StyledTableCell>
+                </StyledTableRow>
               )
             })}
           </TableBody>
