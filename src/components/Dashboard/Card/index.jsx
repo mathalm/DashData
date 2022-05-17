@@ -41,7 +41,6 @@ export default function Card({ listagemUsuarios, setListagemUsuarios, valorFiltr
             </Tabs>
           </Box>
         </div>
-        
         <TabPanel value="one" index={0} className='tab-panel'>
           <DeletarUsuario aparecerOpcoes={aparecerOpcoes} possivelExcluir={possivelExcluir}
             setPossivelExcluir={setPossivelExcluir} setPossivelEditar={setPossivelEditar}
