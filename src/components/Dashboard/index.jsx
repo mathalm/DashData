@@ -9,6 +9,7 @@ function Dashboard() {
 
   const [listagemUsuarios, setListagemUsuarios] = useState([]);
   const valorFiltro = useRef('');
+  
   return ( 
     <div className='div-dashboard'>
       <Nav

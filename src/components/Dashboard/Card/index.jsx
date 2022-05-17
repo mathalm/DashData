@@ -19,11 +19,12 @@ export default function Card({ listagemUsuarios, setListagemUsuarios, valorFiltr
   const [possivelEditar, setPossivelEditar] = React.useState(false);
   const [usuarioSendoEditado, setUsuarioSendoEditado] = React.useState([]);
   const [openModalEdicao, setOpenModalEdicao] = React.useState(false);
-  const [indiceDeEdicao,setIndiceDeEdicao] = React.useState(false);
+  const [indiceDeEdicao, setIndiceDeEdicao] = React.useState(false);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
+  
 
   return (
     <div>
@@ -40,6 +41,7 @@ export default function Card({ listagemUsuarios, setListagemUsuarios, valorFiltr
             </Tabs>
           </Box>
         </div>
+        
         <TabPanel value="one" index={0} className='tab-panel'>
           <DeletarUsuario aparecerOpcoes={aparecerOpcoes} possivelExcluir={possivelExcluir}
             setPossivelExcluir={setPossivelExcluir} setPossivelEditar={setPossivelEditar}
@@ -47,7 +49,7 @@ export default function Card({ listagemUsuarios, setListagemUsuarios, valorFiltr
           />
           <EditarUsuario aparecerOpcoes={aparecerOpcoes} possivelEditar={possivelEditar}
             setPossivelEditar={setPossivelEditar} setPossivelExcluir={setPossivelExcluir}
-            possivelExcluir={possivelExcluir} 
+            possivelExcluir={possivelExcluir}
             usuarioSendoEditado={usuarioSendoEditado}
             setOpenModalEdicao={setOpenModalEdicao}
             openModalEdicao={openModalEdicao}

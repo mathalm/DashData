@@ -155,7 +155,7 @@ function ModalDeEdicao({ usuarioSendoEditado, setOpenModalEdicao, listagemUsuari
         </Grid>
       </Grid>
       <div className='div-botao-cadastrar-usuario'>
-        <Button onClick={handleEnvioCadastroUsuario}>Editar
+        <Button onClick={handleEnvioCadastroUsuario}>Salvar
         </Button>
       </div>
       <div className={!inputVazio ? "alert alert-warning alerta" : 'sumir'} role="alert">
