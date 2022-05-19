@@ -3,7 +3,39 @@ import TextField from '@mui/material/TextField';
 import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
 import './styles.css'
-function ModalDeEdicao({ usuarioSendoEditado, setOpenModalEdicao, listagemUsuarios,indiceDeEdicao, setPossivelEditar }) {
+import NumberFormat from 'react-number-format';
+
+// formatador do campo Celular
+const NumberFormatCustom = React.forwardRef(function NumberFormatCustom(props, ref) {
+  const { onChange, ...other } = props;
+
+  return (
+    <NumberFormat
+      {...other}
+      getInputRef={ref}
+      onValueChange={(celular) => {
+        onChange({
+          target: {
+            name: props.name,
+            value: celular.value,
+          },
+        });
+      }}
+      format="+55 (##) #####-####"
+      prefix="+"
+    />
+  );
+});
+//fim
+
+function ModalDeEdicao({ index, props, setOpen }) {
+
+  const listagemUsuarios = props.listagemUsuarios;
+  const indiceDeEdicao = index;
+  const usuarioSendoEditado = listagemUsuarios[index];
+  const setReload = props.setReload;
+  const reload = props.reload;
+
   const [nome, setNome] = useState('');
   const [userName, setUserName] = useState('');
   const [email, setEmail] = useState('');
@@ -14,8 +46,10 @@ function ModalDeEdicao({ usuarioSendoEditado, setOpenModalEdicao, listagemUsuari
   const [complemento, setComplemento] = useState('');
   const [inputVazio, setInputVazio] = useState(true);
 
+
   const handleEnvioCadastroUsuario = (e) => {
-    e.preventDefault()
+    e.preventDefault();
+    console.log(celular);
     if (nome.length > 3 && userName.length > 3 && email.length > 3 && celular.length > 3) {
 
       var usuario = {
@@ -42,7 +76,8 @@ function ModalDeEdicao({ usuarioSendoEditado, setOpenModalEdicao, listagemUsuari
         }
       }
       listagemUsuarios[indiceDeEdicao] = usuario;
-      setOpenModalEdicao(false);
+      setOpen(false);
+      setReload(!reload)
     } else {
       setInputVazio(false)
       setTimeout(() => {
@@ -52,7 +87,7 @@ function ModalDeEdicao({ usuarioSendoEditado, setOpenModalEdicao, listagemUsuari
 
     }
   }
-  useEffect(() =>{
+  useEffect(() => {
     setNome(document.getElementById('standard-error-helper-text-nome').value);
     setUserName(document.getElementById('standard-error-helper-text-username').value);
     setEmail(document.getElementById('standard-error-helper-text-email').value);
@@ -61,7 +96,12 @@ function ModalDeEdicao({ usuarioSendoEditado, setOpenModalEdicao, listagemUsuari
     setCidade(document.getElementById('standard-error-helper-text-cidade').value);
     setRua(document.getElementById('standard-error-helper-text-rua').value);
     setComplemento(document.getElementById('standard-error-helper-text-complemento').value);
-  },[usuarioSendoEditado]);
+  }, [usuarioSendoEditado]);
+
+
+  const handleChange = (event) => {
+    setCelular(event.target.value);
+  };
 
   return (
     <div>
@@ -72,7 +112,7 @@ function ModalDeEdicao({ usuarioSendoEditado, setOpenModalEdicao, listagemUsuari
             label="Nome"
             variant="standard"
             defaultValue={usuarioSendoEditado.name}
-            onChange={(e) => { setNome(e.target.value)}}
+            onChange={(e) => { setNome(e.target.value) }}
             fullWidth
           />
         </Grid>
@@ -101,15 +141,26 @@ function ModalDeEdicao({ usuarioSendoEditado, setOpenModalEdicao, listagemUsuari
         </Grid>
         <Grid item xs={6}>
           <TextField
-            id="standard-error-helper-text-celular"
             label="Celular"
-            type="number"
+            value={celular.numberformat}
+            id="standard-error-helper-text-celular"
+            defaultValue={usuarioSendoEditado.phone}
+            onChange={handleChange}
+            InputProps={{
+              inputComponent: NumberFormatCustom,
+            }}
+            required
+            fullWidth
+            variant="standard"
+          />
+
+          {/* <TextField
+            
             variant="standard"
             onChange={(e) => { setCelular(e.target.value) }}
-            defaultValue={usuarioSendoEditado.phone}
-            fullWidth
-            required
           />
+           */}
+
         </Grid>
         <Grid item xs={2}>
           <TextField

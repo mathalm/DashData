@@ -2,13 +2,44 @@ import React, { useState } from 'react';
 import TextField from '@mui/material/TextField';
 import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
-import user from '../../../../../arrayUsers.json';
+import NumberFormat from 'react-number-format';
+import user from '../../../../../arrayUsers.json'
 import './styles.css'
-function AreaCadastro({ setOpen, setReload, reload }) {
+
+// formatador do campo Celular
+const NumberFormatCustom = React.forwardRef(function NumberFormatCustom(props, ref) {
+  const { onChange, ...other } = props;
+
+  return (
+    <NumberFormat
+      {...other}
+      getInputRef={ref}
+      onValueChange={(celular) => {
+        onChange({
+          target: {
+            name: props.name,
+            value: celular.value,
+          },
+        });
+      }}
+      format="+55 (##) #####-####"
+      prefix="+"
+      type='text'
+    />
+  );
+});
+//fim
+
+function AreaCadastro({ setOpen, props }) {
+
+ 
+  const setReload = props.setReload;
+  const reload = props.reload;
+
   const [nome, setNome] = useState('');
   const [userName, setUserName] = useState('');
   const [email, setEmail] = useState('');
-  const [telefone, setTelefone] = useState('');
+  const [celular, setCelular] = useState('');
   const [cep, setCep] = useState('');
   const [cidade, setCidade] = useState('');
   const [rua, setRua] = useState('');
@@ -16,7 +47,8 @@ function AreaCadastro({ setOpen, setReload, reload }) {
   const [inputVazio, setInputVazio] = useState(true);
 
   const handleEnvioCadastroUsuario = () => {
-    if (nome.length > 3 && userName.length > 3 && email.length > 3 && telefone.length > 3) {
+    console.log(celular);
+    if (nome.length > 3 && userName.length > 3 && email.length > 3 && celular.length > 3) {
 
       var usuario = {
         "id": Math.floor(Math.random() *243),
@@ -33,7 +65,7 @@ function AreaCadastro({ setOpen, setReload, reload }) {
             "lng": "57.2232"
           }
         },
-        "phone": telefone,
+        "phone": celular,
         "website": "noHave.com",
         "company": {
           "name": "Hoeger LLC",
@@ -42,8 +74,9 @@ function AreaCadastro({ setOpen, setReload, reload }) {
         }
       }
       user.unshift(usuario);
+      setReload(!reload)
       setOpen(false);
-      handleReload();
+      
     } else {
       setInputVazio(false)
       setTimeout(() => {
@@ -53,9 +86,13 @@ function AreaCadastro({ setOpen, setReload, reload }) {
 
     }
   }
-  const handleReload = () => {
-    setReload(!reload);
-  }
+  
+
+  
+  const handleChange = (event) => {
+    setCelular(event.target.value);
+  };
+
 
   return (
     <div>
@@ -92,14 +129,18 @@ function AreaCadastro({ setOpen, setReload, reload }) {
           />
         </Grid>
         <Grid item xs={6}>
-          <TextField
-            id="standard-error-helper-text-celular"
+        <TextField
             label="Celular"
-            type="number"
-            variant="standard"
-            onChange={(e) => { setTelefone(e.target.value) }}
-            fullWidth
+            value={celular.numberformat}
+            id="standard-error-helper-text-celular"
+            onChange={handleChange}
+            InputProps={{
+              inputComponent: NumberFormatCustom,
+            }}
             required
+            fullWidth
+            variant="standard"
+            type='text'
           />
         </Grid>
         <Grid item xs={3}>

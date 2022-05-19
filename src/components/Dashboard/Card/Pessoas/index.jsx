@@ -8,7 +8,9 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import users from '../../../../arrayUsers.json'
+import DeletarUsuario from './DeletarUsuario'
 import './styles.css'
+import EditarUsuario from '../EditarUsuario';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -31,46 +33,18 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 }));
 
 
-export default function TabelaPessoas({ listagemUsuarios, setListagemUsuarios, valorFiltro, possivelExcluir, possivelEditar,setUsuarioSendoEditado, setOpenModalEdicao, setIndiceDeEdicao, setPossivelEditar }) {
+export default function TabelaPessoas({ props }) {
+
+  const listagemUsuarios = props.listagemUsuarios;
+  const setListagemUsuarios = props.setListagemUsuarios;
+  const valorFiltro = props.valorFiltro.current
+
 
   useEffect(() => {
-    if (valorFiltro.current <= 0) {
+    if (valorFiltro <= 0) {
       setListagemUsuarios(users);
     }
   }, [setListagemUsuarios, valorFiltro])
-
-
-  const handleMostraOpcaoDeExcluir = (indice) => {
-    if (possivelExcluir) {
-      listagemUsuarios.splice(indice, 1);
-      setListagemUsuarios(
-        listagemUsuarios.filter(function filterByID(obj) {
-          if ("id" in obj && obj.id !== indice) {
-            return true;
-          } else {
-            return false;
-          }
-        })
-      )
-    }
-    if (possivelEditar) {
-      var usuarioEdicao = listagemUsuarios[indice];
-      setUsuarioSendoEditado(usuarioEdicao);
-      setOpenModalEdicao(true);
-      setIndiceDeEdicao(indice)
-      setPossivelEditar(true);
-    }
-  }
-
-  const handleMudarClasseDaLinha = () => {
-    if (possivelExcluir) {
-      return 'possivel-excluir-essa-linha'
-    }
-    if (possivelEditar) {
-      return 'possivel-editar-essa-linha'
-    }
-  }
-
 
 
   return (
@@ -79,24 +53,30 @@ export default function TabelaPessoas({ listagemUsuarios, setListagemUsuarios, v
         <Table sx={{ minWidth: 200 }} aria-label="customized table " stickyHeader size='medium'>
           <TableHead>
             <TableRow>
-              <StyledTableCell className='classe-id-tabela'>ID</StyledTableCell>
-              <StyledTableCell align="right">Nome</StyledTableCell>
-              <StyledTableCell align="right">Username</StyledTableCell>
-              <StyledTableCell align="right">E-mail</StyledTableCell>
-              <StyledTableCell align="right">Telefone</StyledTableCell>
-              <StyledTableCell align="right">Cidade</StyledTableCell>
+              <StyledTableCell align="center">Nome</StyledTableCell>
+              <StyledTableCell align="center">Username</StyledTableCell>
+              <StyledTableCell align="center">E-mail</StyledTableCell>
+              <StyledTableCell align="center">Telefone</StyledTableCell>
+              <StyledTableCell align="center">Cidade</StyledTableCell>
+              <StyledTableCell align="center" className='acoes-tabela-usuario'>Ações</StyledTableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {listagemUsuarios.map((user, index) => {
               return (
-                <StyledTableRow key={index} onClick={() => handleMostraOpcaoDeExcluir(index)} className={handleMudarClasseDaLinha()}>
-                  <StyledTableCell indexlinha={index} className='classe-id-tabela' >{user.id}</StyledTableCell>
-                  <StyledTableCell align="right">{user.name}</StyledTableCell>
-                  <StyledTableCell align="right">{user.username}</StyledTableCell>
-                  <StyledTableCell align="right">{user.email}</StyledTableCell>
-                  <StyledTableCell align="right">{user.phone}</StyledTableCell>
-                  <StyledTableCell align="right">{user.address.city}</StyledTableCell>
+                <StyledTableRow key={index}>
+                  <StyledTableCell align="center">{user.name}</StyledTableCell>
+                  <StyledTableCell align="center">{user.username}</StyledTableCell>
+                  <StyledTableCell align="center">{user.email}</StyledTableCell>
+                  <StyledTableCell align="center">{user.phone}</StyledTableCell>
+                  <StyledTableCell align="center">{user.address.city}</StyledTableCell>
+                  <StyledTableCell align="center">
+                    <div className='acoes-tabela-usuario'>
+
+                      <DeletarUsuario index={index} props={props} />
+                      <EditarUsuario index={index} props={props}/>
+                    </div>
+                  </StyledTableCell>
                 </StyledTableRow>
               )
             })}

@@ -5,26 +5,25 @@ import Box from '@mui/material/Box';
 import { TabContext, TabPanel } from '@mui/lab';
 import TabelaPessoas from './Pessoas';
 import CadastroUsuarios from './CadastroUsuario';
-import './styles.css'
 import Graficos from './Gráficos';
-import BotaoOpcoes from './BotaoOpcoes';
-import DeletarUsuario from './DeletarUsuario'
-import EditarUsuario from './EditarUsuario'
+import './styles.css'
 
 export default function Card({ listagemUsuarios, setListagemUsuarios, valorFiltro }) {
   const [value, setValue] = React.useState('one');
   const [reload, setReload] = React.useState(false);
-  const [aparecerOpcoes, setAparecerOpcoes] = React.useState(false);
-  const [possivelExcluir, setPossivelExcluir] = React.useState(false);
-  const [possivelEditar, setPossivelEditar] = React.useState(false);
-  const [usuarioSendoEditado, setUsuarioSendoEditado] = React.useState([]);
-  const [openModalEdicao, setOpenModalEdicao] = React.useState(false);
-  const [indiceDeEdicao, setIndiceDeEdicao] = React.useState(false);
+
+
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
-  
+  const props = {
+    listagemUsuarios: listagemUsuarios,
+    setListagemUsuarios: setListagemUsuarios,
+    valorFiltro: valorFiltro,
+    setReload: setReload,
+    reload: reload
+  }
 
   return (
     <div>
@@ -41,32 +40,9 @@ export default function Card({ listagemUsuarios, setListagemUsuarios, valorFiltr
             </Tabs>
           </Box>
         </div>
-        <TabPanel value="one" index={0} className='tab-panel'>
-          <DeletarUsuario aparecerOpcoes={aparecerOpcoes} possivelExcluir={possivelExcluir}
-            setPossivelExcluir={setPossivelExcluir} setPossivelEditar={setPossivelEditar}
-            possivelEditar={possivelEditar}
-          />
-          <EditarUsuario aparecerOpcoes={aparecerOpcoes} possivelEditar={possivelEditar}
-            setPossivelEditar={setPossivelEditar} setPossivelExcluir={setPossivelExcluir}
-            possivelExcluir={possivelExcluir}
-            usuarioSendoEditado={usuarioSendoEditado}
-            setOpenModalEdicao={setOpenModalEdicao}
-            openModalEdicao={openModalEdicao}
-            listagemUsuarios={listagemUsuarios}
-            indiceDeEdicao={indiceDeEdicao}
-          />
-          <BotaoOpcoes setAparecerOpcoes={setAparecerOpcoes} aparecerOpcoes={aparecerOpcoes} />
-          <CadastroUsuarios setReload={setReload} reload={reload} aparecerOpcoes={aparecerOpcoes} />
-          <TabelaPessoas listagemUsuarios={listagemUsuarios}
-            setListagemUsuarios={setListagemUsuarios}
-            valorFiltro={valorFiltro}
-            possivelExcluir={possivelExcluir}
-            possivelEditar={possivelEditar}
-            setUsuarioSendoEditado={setUsuarioSendoEditado}
-            setOpenModalEdicao={setOpenModalEdicao}
-            setIndiceDeEdicao={setIndiceDeEdicao}
-            setPossivelEditar={setPossivelEditar}
-          />
+        <TabPanel value="one" index={0} className='tab-panel' >
+          <CadastroUsuarios props={props}  />
+          <TabelaPessoas props={props}  />
         </TabPanel>
         <TabPanel value="two" index={1}>
           <Graficos listagemUsuarios={listagemUsuarios} />

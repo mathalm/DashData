@@ -4,3 +4,10 @@
   padding-left: 10px;
   background-color: #ffffff;
 }
+.botao-cadastro-usuario{
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+
+
+}

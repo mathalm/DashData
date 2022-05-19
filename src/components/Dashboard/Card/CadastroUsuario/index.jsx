@@ -7,13 +7,16 @@ import { GrClose } from 'react-icons/gr'
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
+import IconButton from '@mui/material/IconButton';
+import Tooltip from '@mui/material/Tooltip';
+import Zoom from '@mui/material/Zoom';
 import './styles.css'
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-export default function CadastroUsuarios({ setReload, reload, aparecerOpcoes }) {
+export default function CadastroUsuarios({  props }) {
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -27,9 +30,6 @@ export default function CadastroUsuarios({ setReload, reload, aparecerOpcoes }) 
 
   return (
     <div className='div-cadastro-usuario'>
-      <div onClick={handleClickOpen} className={aparecerOpcoes ? 'div-botao-subir-adicionar' : 'div-botao-descer-adicionar'}>
-        <AiOutlineUserAdd size={22} />
-      </div>
       <Dialog
         open={open}
         onClose={handleClose}
@@ -37,12 +37,19 @@ export default function CadastroUsuarios({ setReload, reload, aparecerOpcoes }) 
       >
         <DialogTitle>Criar usuário</DialogTitle>
         <DialogContent className='modal-lg'>
-          <AreaCadastro setOpen={setOpen} setReload={setReload} reload={reload} />
+          <AreaCadastro setOpen={setOpen} props={props}/>
         </DialogContent>
         <DialogActions>
           <GrClose onClick={handleClose} className='botao-cancelar ' />
         </DialogActions>
       </Dialog>
+      <div onClick={handleClickOpen}>
+        <Tooltip TransitionComponent={Zoom} title="Cadastrar usuário" arrow className='tooltip-cadastro-usuario' >
+          <IconButton >
+            <AiOutlineUserAdd size={22} />
+          </IconButton>
+        </Tooltip>
+      </div>
     </div>
   );
 }
