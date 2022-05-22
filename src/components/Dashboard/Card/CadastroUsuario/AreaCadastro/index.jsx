@@ -47,7 +47,6 @@ function AreaCadastro({ setOpen, props }) {
   const [inputVazio, setInputVazio] = useState(true);
 
   const handleEnvioCadastroUsuario = () => {
-    console.log(celular);
     if (nome.length > 3 && userName.length > 3 && email.length > 3 && celular.length > 3) {
 
       var usuario = {

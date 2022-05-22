@@ -6,12 +6,14 @@ import { TabContext, TabPanel } from '@mui/lab';
 import TabelaPessoas from './Pessoas';
 import CadastroUsuarios from './CadastroUsuario';
 import Graficos from './Gráficos';
-import './styles.css'
+import FiltroUsuario from './FiltroUsuarios';
+import './styles.css';
+import DowloadPlanilha from './DownloadPlanilha';
 
-export default function Card({ listagemUsuarios, setListagemUsuarios, valorFiltro }) {
+export default function Card({ listagemUsuarios, setListagemUsuarios }) {
   const [value, setValue] = React.useState('one');
   const [reload, setReload] = React.useState(false);
-
+  const valorFiltro = React.useRef('');
 
 
   const handleChange = (event, newValue) => {
@@ -40,9 +42,15 @@ export default function Card({ listagemUsuarios, setListagemUsuarios, valorFiltr
             </Tabs>
           </Box>
         </div>
+        <div className='div-filtro'>
+          <FiltroUsuario props={props}/>
+        </div>
         <TabPanel value="one" index={0} className='tab-panel' >
-          <CadastroUsuarios props={props}  />
-          <TabelaPessoas props={props}  />
+          <div className='div-cadastro'>
+            <CadastroUsuarios props={props} />
+            <DowloadPlanilha props={props}/>
+          </div>
+          <TabelaPessoas props={props} />
         </TabPanel>
         <TabPanel value="two" index={1}>
           <Graficos listagemUsuarios={listagemUsuarios} />

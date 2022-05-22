@@ -1,13 +1,24 @@
-
 .div-box {
   border-bottom: solid 2px rgba(0, 0, 0, 0.075);
   padding-left: 10px;
   background-color: #ffffff;
 }
-.botao-cadastro-usuario{
+.botao-cadastro-usuario {
   position: fixed;
   bottom: 25px;
   right: 25px;
-
-
+}
+.div-filtro {
+  width: 600px;
+  margin: auto;
+  margin-top: 15px;
+}
+.div-cadastro {
+  display: flex;
+  justify-content: space-between;
+  width: 90px;
+  height: max-content;
+  position: fixed;
+  top: 120px;
+  left: 14vw;
 }

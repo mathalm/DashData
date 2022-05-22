@@ -3,7 +3,7 @@ background-color: aqua;
 }
 .table-container{
   max-width: 80vw;
-  height: 65vh;
+  height: 62vh;
   margin: auto;
 }
 .table-container::-webkit-scrollbar{
@@ -24,5 +24,13 @@ background-color: aqua;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  /* background-color: aqua; */
+  
+}
+.titulo-coluna{
+  cursor: pointer;
+}
+.icone-criar-arquivo-csv{
+  position: fixed;
+  bottom: 22px;
+  left: 2vw;
 }

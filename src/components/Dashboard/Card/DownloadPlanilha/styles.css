@@ -1,27 +1,17 @@
-.rounded-circle {
-  width: 30px;
-  height: 60px;
-}
-.botao-cancelar{
-  position: absolute;
-  top: 10px;
-  cursor: pointer;
-}
-.tooltip-cadastro-usuario{
+.tooltip-download-lista{
   background-color: #1976D2 !important;
   color: #f0f0f0 !important;
   transition: 1s ease !important;
   width: max-content;
 }
-.tooltip-cadastro-usuario:hover{
+.tooltip-download-lista:hover{
   background-color: #188cff !important;
   transform: scale(1.05);
 }
-/* .div-cadastro-usuario{
-  
+/* .div-download-lista{
   width: max-content;
   height: max-content;
   position: fixed;
   top: 120px;
-  left: 10vw;
+  left: 14vw;
 } */
