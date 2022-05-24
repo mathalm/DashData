@@ -2,8 +2,9 @@ import React, { useEffect, useState } from 'react';
 import TextField from '@mui/material/TextField';
 import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
-import './styles.css'
 import NumberFormat from 'react-number-format';
+
+import './styles.css'
 
 // formatador do campo Celular
 const NumberFormatCustom = React.forwardRef(function NumberFormatCustom(props, ref) {
@@ -28,7 +29,7 @@ const NumberFormatCustom = React.forwardRef(function NumberFormatCustom(props, r
 });
 //fim
 
-function ModalDeEdicao({ index, props, setOpen }) {
+function ModalDeEdicao({ index, props, setOpen,setAbrirAlertaEdicao }) {
 
   const listagemUsuarios = props.listagemUsuarios;
   const indiceDeEdicao = index;
@@ -45,9 +46,10 @@ function ModalDeEdicao({ index, props, setOpen }) {
   const [rua, setRua] = useState('');
   const [complemento, setComplemento] = useState('');
   const [inputVazio, setInputVazio] = useState(true);
+  
 
 
-  const handleEnvioCadastroUsuario = (e) => {
+  const handleEnvioEdicaoUsuario = (e) => {
     e.preventDefault();
     console.log(celular);
     if (nome.length > 3 && userName.length > 3 && email.length > 3 && celular.length > 3) {
@@ -78,6 +80,10 @@ function ModalDeEdicao({ index, props, setOpen }) {
       listagemUsuarios[indiceDeEdicao] = usuario;
       setOpen(false);
       setReload(!reload)
+      setAbrirAlertaEdicao(true)
+      setTimeout(() => {
+        setAbrirAlertaEdicao(false)
+      }, 4000);
     } else {
       setInputVazio(false)
       setTimeout(() => {
@@ -91,7 +97,7 @@ function ModalDeEdicao({ index, props, setOpen }) {
     setNome(document.getElementById('standard-error-helper-text-nome').value);
     setUserName(document.getElementById('standard-error-helper-text-username').value);
     setEmail(document.getElementById('standard-error-helper-text-email').value);
-    setCelular(document.getElementById('standard-error-helper-text-celular').value);
+    setCelular(document.getElementById('standard-error-helper-text-celular').value.replace(/[^0-9]/g,'').slice(2,15));//pegando só os numero sem + () - e tirando o 55 do começo
     setCep(document.getElementById('standard-error-helper-text-cep').value);
     setCidade(document.getElementById('standard-error-helper-text-cidade').value);
     setRua(document.getElementById('standard-error-helper-text-rua').value);
@@ -104,6 +110,7 @@ function ModalDeEdicao({ index, props, setOpen }) {
   };
 
   return (
+   <>
     <div>
       <Grid container spacing={2} className='container-area-cadastro'>
         <Grid item xs={6}>
@@ -153,14 +160,6 @@ function ModalDeEdicao({ index, props, setOpen }) {
             fullWidth
             variant="standard"
           />
-
-          {/* <TextField
-            
-            variant="standard"
-            onChange={(e) => { setCelular(e.target.value) }}
-          />
-           */}
-
         </Grid>
         <Grid item xs={2}>
           <TextField
@@ -206,13 +205,16 @@ function ModalDeEdicao({ index, props, setOpen }) {
         </Grid>
       </Grid>
       <div className='div-botao-cadastrar-usuario'>
-        <Button onClick={handleEnvioCadastroUsuario}>Salvar
+        <Button onClick={handleEnvioEdicaoUsuario}>Salvar
         </Button>
       </div>
       <div className={!inputVazio ? "alert alert-warning alerta" : 'sumir'} role="alert">
         Todos os campos devem ser preenchidos!
       </div>
     </div>
+    <div>
+      
+    </div></>
   );
 }
 

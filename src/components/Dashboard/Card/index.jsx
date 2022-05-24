@@ -7,8 +7,8 @@ import TabelaPessoas from './Pessoas';
 import CadastroUsuarios from './CadastroUsuario';
 import Graficos from './Gráficos';
 import FiltroUsuario from './FiltroUsuarios';
-import './styles.css';
 import DowloadPlanilha from './DownloadPlanilha';
+import './styles.css';
 
 export default function Card({ listagemUsuarios, setListagemUsuarios }) {
   const [value, setValue] = React.useState('one');

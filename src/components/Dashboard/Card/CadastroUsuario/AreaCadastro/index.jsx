@@ -30,7 +30,7 @@ const NumberFormatCustom = React.forwardRef(function NumberFormatCustom(props, r
 });
 //fim
 
-function AreaCadastro({ setOpen, props }) {
+function AreaCadastro({ setOpen, props, setAbrirAlertaDeCadastro }) {
 
  
   const setReload = props.setReload;
@@ -75,6 +75,11 @@ function AreaCadastro({ setOpen, props }) {
       user.unshift(usuario);
       setReload(!reload)
       setOpen(false);
+      setAbrirAlertaDeCadastro(true);
+      setTimeout(() => {
+        setAbrirAlertaDeCadastro(false);
+        
+      }, 4000);
       
     } else {
       setInputVazio(false)

@@ -10,6 +10,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
 import Zoom from '@mui/material/Zoom';
+import Alert from '@mui/material/Alert';
 import './styles.css'
 
 const Transition = React.forwardRef(function Transition(props, ref) {
@@ -18,6 +19,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 
 export default function CadastroUsuarios({  props }) {
   const [open, setOpen] = React.useState(false);
+  const [abrirAlertaDeCadastro,setAbrirAlertaDeCadastro ] = React.useState(false);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -27,6 +29,15 @@ export default function CadastroUsuarios({  props }) {
     setOpen(false);
   };
 
+  const alertaSucessoCadastro = () => {
+    if (abrirAlertaDeCadastro) {
+        return (
+          <Alert severity="success" variant="filled" sx={{ position: 'fixed', top: '9vh', right: '5vw' }}>
+            Usuário cadastrado com sucesso!
+          </Alert>
+        )
+    } 
+  }
 
   return (
     <div className='div-cadastro-usuario'>
@@ -37,7 +48,7 @@ export default function CadastroUsuarios({  props }) {
       >
         <DialogTitle>Criar usuário</DialogTitle>
         <DialogContent className='modal-lg'>
-          <AreaCadastro setOpen={setOpen} props={props}/>
+          <AreaCadastro setOpen={setOpen} props={props} setAbrirAlertaDeCadastro={setAbrirAlertaDeCadastro}/>
         </DialogContent>
         <DialogActions>
           <GrClose onClick={handleClose} className='botao-cancelar ' />
@@ -50,6 +61,7 @@ export default function CadastroUsuarios({  props }) {
           </IconButton>
         </Tooltip>
       </div>
+      {alertaSucessoCadastro()}
     </div>
   );
 }
