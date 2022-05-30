@@ -84,7 +84,7 @@ function FiltroUsuario({ props }) {
   return (
     <div className="container-fluid div-filtro-usuario">
       <form className="d-flex">
-        <input className="form-control me-1" type="search" placeholder="Buscar nome" id='input-filtro' maxLength={20} onChange={(e) => { valorFiltro.current = e.target.value }} onKeyDown={handleCancelarEventoEnvio} />
+        <input className="form-control me-1" type="text" placeholder="Buscar nome" id='input-filtro' maxLength={20} onChange={(e) => { valorFiltro.current = e.target.value }} onKeyDown={handleCancelarEventoEnvio} />
         <button className="btn btn-outline-success me-3" type="button" onClick={handleFazerFiltro}>Search</button>
         {temValorNoFiltro ?
           <button type="button" className="btn btn-secondary me-3 d-flex position-relative botao-nome-filtro" onClick={handleLimparFiltroExistente}>

@@ -34,7 +34,7 @@ function EditarUsuario({ index, props }) {
     if (abrirAlertaEdicao) {
       return (
         < Alert severity="success" variant="filled" color="" sx={{ position: 'absolute', top: '9vh', right: '5vw' }}>
-          Usuário editado.
+          Usuário editado com sucesso!
         </Alert >
       )
     }

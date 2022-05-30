@@ -49,7 +49,7 @@ function DeletarUsuario({ index, props }) {
     if (abrirAlertaDelecao) {
       return (
         < Alert severity="error" variant="filled" sx={{ position: 'fixed', top: '9vh', right: '5vw' }}>
-          Usuário deletado
+          Usuário deletado com sucesso!
         </Alert >
       )
     }

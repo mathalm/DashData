@@ -8,10 +8,10 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import DeletarUsuario from './DeletarUsuario'
-import EditarUsuario from '../EditarUsuario';
+import EditarUsuario from './EditarUsuarios';
 import arraySort from 'array-sort'
 import { RiArrowUpDownFill } from 'react-icons/ri'
-import users from '../../../../arrayUsers.json'
+import users from '../../../../../arrayUsers.json'
 import './styles.css'
 
 //dependencia do material UI
@@ -95,7 +95,6 @@ export default function TabelaPessoas({ props }) {
     )
   }
 
-
   return (
     <div>
       <TableContainer component={Paper} className='table-container' >
@@ -121,8 +120,8 @@ export default function TabelaPessoas({ props }) {
                   <StyledTableCell align="center">{user.address.city}</StyledTableCell>
                   <StyledTableCell align="center">
                     <div className='acoes-tabela-usuario'>
-                      <DeletarUsuario index={index} props={props} />
                       <EditarUsuario index={index} props={props} />
+                      <DeletarUsuario index={index} props={props} />
                     </div>
                   </StyledTableCell>
                 </StyledTableRow>

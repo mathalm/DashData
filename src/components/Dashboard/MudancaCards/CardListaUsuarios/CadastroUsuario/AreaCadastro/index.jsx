@@ -3,7 +3,7 @@ import TextField from '@mui/material/TextField';
 import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
 import NumberFormat from 'react-number-format';
-import user from '../../../../../arrayUsers.json'
+import user from '../../../../../../arrayUsers.json'
 import './styles.css'
 
 // formatador do campo Celular

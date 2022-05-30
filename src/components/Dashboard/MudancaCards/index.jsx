@@ -3,18 +3,17 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
 import { TabContext, TabPanel } from '@mui/lab';
-import TabelaPessoas from './Pessoas';
-import CadastroUsuarios from './CadastroUsuario';
-import Graficos from './Gráficos';
+import TabelaPessoas from './CardListaUsuarios/Pessoas';
+import CadastroUsuarios from './CardListaUsuarios/CadastroUsuario';
+import GraficosUsuarios from './CardGraficos';
 import FiltroUsuario from './FiltroUsuarios';
-import DowloadPlanilha from './DownloadPlanilha';
+import DowloadPlanilha from './CardListaUsuarios/DownloadPlanilha';
 import './styles.css';
 
-export default function Card({ listagemUsuarios, setListagemUsuarios }) {
+export default function MudancaCards({ listagemUsuarios, setListagemUsuarios }) {
   const [value, setValue] = React.useState('one');
   const [reload, setReload] = React.useState(false);
   const valorFiltro = React.useRef('');
-
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -53,7 +52,7 @@ export default function Card({ listagemUsuarios, setListagemUsuarios }) {
           <TabelaPessoas props={props} />
         </TabPanel>
         <TabPanel value="two" index={1}>
-          <Graficos listagemUsuarios={listagemUsuarios} />
+          <GraficosUsuarios props={props} />
         </TabPanel>
       </TabContext>
     </div>

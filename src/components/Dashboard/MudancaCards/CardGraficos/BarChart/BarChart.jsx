@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { Bar } from "react-chartjs-2";
+import { Pie } from "react-chartjs-2";
 import { Chart, registerables } from "chart.js";
 import "./styles.css";
 
 Chart.register(...registerables);
 
-const BarChart = ({ listagemUsuarios }) => {
+const BarChart = ({ props }) => {
+
+  const listagemUsuarios = props.listagemUsuarios;
 
   const [contagemCidadePoA, setContagemCidadePoA] = useState([]);
   const [contagemCidadeFloripa, setContagemCidadeFloripa] = useState([]);
@@ -32,7 +34,7 @@ const BarChart = ({ listagemUsuarios }) => {
 
   return (
     <div className="div-grafico1">
-      <Bar
+      <Pie
         data={{
           labels: ["Porto Alegre", "Florianópolis", "Rio de Janeiro"],
           datasets: [
@@ -40,23 +42,17 @@ const BarChart = ({ listagemUsuarios }) => {
               label: "Cadastro de usuários",
               data: dadosBar,
               backgroundColor: [
-                "rgba(255, 99, 132, 0.2)",
-                "rgba(153, 102, 255, 0.2)",
-                "rgba(255, 159, 64, 0.2)",
+                "rgba(255, 99, 133, 0.7)",
+                "rgba(153, 102, 255, 0.7)",
+                "rgba(255, 159, 64, 0.7)",
               ],
               borderColor: [
-                "rgba(255, 99, 132, 1)",
-                "rgba(153, 102, 255, 1)",
-                "rgba(255, 159, 64, 1)",
+                "#ff1648",
+                "#742eff",
+                "#ff8f1e",
               ],
               borderWidth: 1,
-            },
-            {
-              label: "Meta",
-              data: [6, 4, 5],
-              backgroundColor: "Orange",
-              borderColor: "red",
-            },
+            }
           ],
         }}
         options={{
