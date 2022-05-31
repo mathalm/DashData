@@ -1,11 +1,32 @@
-.botao-nome-filtro{
+.botao-nome-filtro {
   background-color: rgba(160, 160, 160, 0.514);
   border: none;
   color: black;
 }
-.botao-nome-filtro:hover{
+.botao-nome-filtro:hover {
   background-color: rgba(107, 107, 107, 0.514);
   color: black;
   border: none;
 }
 
+@media (max-width: 600px) {
+  .d-flex {
+    flex-direction: column;
+  }
+  .botao-nome-filtro{
+    width: max-content;
+    align-self: center;
+  }
+  .d-flex .btn-outline-success{
+    align-self: center;
+    width: 20rem;
+  }
+}
+
+@media (max-width: 365px) {
+  .d-flex .btn-outline-success{
+    align-self: center;
+    width: 10rem;
+  }
+  
+}

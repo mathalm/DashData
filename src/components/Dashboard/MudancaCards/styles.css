@@ -22,3 +22,21 @@
   top: 120px;
   left: 14vw;
 }
+
+@media (max-width: 1080px) {
+  .div-cadastro {
+    width: 100%;
+    padding-right: 1rem;
+    justify-content: flex-end;
+    top: 10px;
+    left: 0;
+    
+  }
+}
+
+@media(max-width:600px){
+  .div-filtro {
+    width: 100%;
+  }
+
+}

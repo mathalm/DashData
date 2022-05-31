@@ -17,11 +17,9 @@
   background-color: #188cff !important;
   transform: scale(1.05);
 }
-/* .div-cadastro-usuario{
-  
-  width: max-content;
-  height: max-content;
-  position: fixed;
-  top: 120px;
-  left: 10vw;
-} */
+
+@media(max-width:1080px){
+  .div-cadastro-usuario{
+    margin-right: 0.5rem;
+  }
+}
