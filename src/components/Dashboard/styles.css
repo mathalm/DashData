@@ -1,5 +1,6 @@
 .div-dashboard{
-  height: 100vh;
+  min-height: 100vh;
+  height: max-content;
   background-color: #f1f1f1;
 }
 .div-progresso{

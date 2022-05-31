@@ -13,13 +13,16 @@
   .d-flex {
     flex-direction: column;
   }
-  .botao-nome-filtro{
-    width: max-content;
-    align-self: center;
+  .form-control{
+    margin-bottom: 5px;
   }
   .d-flex .btn-outline-success{
     align-self: center;
     width: 20rem;
+  }
+  .botao-nome-filtro{
+    width: max-content;
+    align-self: center;
   }
 }
 

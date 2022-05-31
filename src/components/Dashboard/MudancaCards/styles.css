@@ -3,6 +3,9 @@
   padding-left: 10px;
   background-color: #ffffff;
 }
+.tab-panel{
+  height: max-content;
+}
 .botao-cadastro-usuario {
   position: fixed;
   bottom: 25px;

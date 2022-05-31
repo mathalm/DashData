@@ -62,16 +62,15 @@ const GraficoUsuariosCidade = ({ props }) => {
           ],
         }}
         options={{
-          indexAxis: 'x',
           maintainAspectRatio: false,
+          responsive: true,
           scales: {
             y: {
-              beginAtZero: true,
               grid: {
-                offset: true
+                display: true,
               }
             },
-          },
+          }
         }}
       />
     </div>
