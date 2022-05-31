@@ -37,7 +37,7 @@ export default function MudancaCards({ listagemUsuarios, setListagemUsuarios }) 
               aria-label="wrapped label tabs example"
             >
               <Tab value="one" label="Pessoas" />
-              <Tab value="two" label="Gráfico" />
+              <Tab value="two" label="Gráficos" />
             </Tabs>
           </Box>
         </div>
