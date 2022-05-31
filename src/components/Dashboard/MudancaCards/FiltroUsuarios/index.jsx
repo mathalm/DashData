@@ -85,9 +85,9 @@ function FiltroUsuario({ props }) {
     <div className="container-fluid div-filtro-usuario">
       <form className="d-flex">
         <input className="form-control me-1" type="text" placeholder="Buscar nome" id='input-filtro' maxLength={20} onChange={(e) => { valorFiltro.current = e.target.value }} onKeyDown={handleCancelarEventoEnvio} />
-        <button className="btn btn-outline-success me-3" type="button" onClick={handleFazerFiltro}>Search</button>
+        <button className="btn btn-outline-success me-3" type="button" onClick={handleFazerFiltro}>Buscar</button>
         {temValorNoFiltro ?
-          <button type="button" className="btn btn-secondary me-3 d-flex position-relative botao-nome-filtro" onClick={handleLimparFiltroExistente}>
+          <button type="button" className="btn btn-secondary me-3 d-flex position-relative botao-nome-filtro" translate='no' onClick={handleLimparFiltroExistente}>
             {valorFiltro.current}  <MdOutlineClear className='position-absolute top-0 end-0' />
           </button>
           :

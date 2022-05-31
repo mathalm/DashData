@@ -2,8 +2,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  position: fixed;
-  bottom: 0px;
   width: 100%;
   color: rgb(112, 112, 112);
 }
@@ -12,4 +10,9 @@
 }
 .footer-page a:visited{
   color: blue;
+}
+@media(max-width:450px){
+  .footer-page{
+    position: inherit;
+  }
 }

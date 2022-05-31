@@ -116,7 +116,7 @@ export default function TabelaPessoas({ props }) {
                   <StyledTableCell align="center">{user.name}</StyledTableCell>
                   <StyledTableCell align="center">{user.username}</StyledTableCell>
                   <StyledTableCell align="center">{user.email}</StyledTableCell>
-                  <StyledTableCell align="center">{handleFormatarCelular(user.phone)}</StyledTableCell>
+                  <StyledTableCell align="center" className='no-white-space'>{handleFormatarCelular(user.phone)}</StyledTableCell>
                   <StyledTableCell align="center">{user.address.city}</StyledTableCell>
                   <StyledTableCell align="center">
                     <div className='acoes-tabela-usuario'>

@@ -9,27 +9,15 @@ background-color: aqua;
 .table-container::-webkit-scrollbar{
   width: 0.1px;
 }
-.opcoes-editar-deletar{
-  position: relative;
-}
-.esconder-opcoes{
-  display: none;
-}
-.classe-id-tabela{
-  width: 20px;
-}
 .acoes-tabela-usuario{
   width: 75px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  
 }
 .titulo-coluna{
   cursor: pointer;
 }
-.icone-criar-arquivo-csv{
-  position: fixed;
-  bottom: 22px;
-  left: 2vw;
+.no-white-space{
+  white-space: nowrap;
 }
