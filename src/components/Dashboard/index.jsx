@@ -4,6 +4,7 @@ import Footer from "./Footer";
 import MudancaCards from './MudancaCards';
 import LinearProgress from '@mui/material/LinearProgress';
 import Box from '@mui/material/Box';
+import { Helmet } from "react-helmet";
 import './styles.css'
 
 function Dashboard() {
@@ -11,7 +12,7 @@ function Dashboard() {
   const [listagemUsuarios, setListagemUsuarios] = useState([]);
   const [aparecerLoad, setAparecerLoad] = useState(true);
 
-  const pagCarregada = () =>{
+  const pagCarregada = () => {
     setTimeout(() => {
       setAparecerLoad(false)
     }, 3000);
@@ -31,13 +32,19 @@ function Dashboard() {
         aparecerLoad ?
           <div className='div-progresso'>
             <Box>
-              <LinearProgress sx={{ height: 7,}}/>
+              <LinearProgress sx={{ height: 7, }} />
             </Box>
           </div>
           :
           null
       }
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>DashData</title>
+        <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/1828/1828673.png" />
+      </Helmet>
     </div>
+
   );
 }
 
