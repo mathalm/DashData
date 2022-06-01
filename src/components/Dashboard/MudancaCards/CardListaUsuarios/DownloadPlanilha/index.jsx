@@ -17,10 +17,7 @@ function DowloadPlanilha({ props }) {
     { label: 'username', key: 'username' },
     { label: 'email', key: 'email' },
     { label: 'phone', key: 'phone' },
-    { label: 'city', key: 'address.city' },
-    { label: 'street', key: 'address.street' },
-    { label: 'website', key: 'website' }
-
+    { label: 'city', key: 'address.city' }
   ]
   
   useEffect(() =>{
